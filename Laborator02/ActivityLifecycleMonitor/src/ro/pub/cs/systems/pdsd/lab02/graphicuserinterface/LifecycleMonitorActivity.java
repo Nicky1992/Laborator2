@@ -20,6 +20,43 @@ public class LifecycleMonitorActivity extends Activity {
 	
 	private ButtonClickListener buttonClickListener = new ButtonClickListener();
 	
+    @Override
+    public void onRestart() {
+    	super.onRestart();
+    	Log.d(Constants.TAG, "onRestart method was invoked");
+    }
+    
+    @Override
+    public void onStart() {
+    	super.onStart();
+    	Log.d(Constants.TAG, "onStart method was invoked");
+    }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	Log.d(Constants.TAG, "onResume method was invokd");
+    }
+    
+    @Override
+    public void onPause() {
+    	super.onPause();
+    	Log.d(Constants.TAG, "onPause method was invoked");
+    }
+    
+    @Override
+    public void onStop() {
+    	super.onStop();
+    	Log.d(Constants.TAG, "onStop method was invoked");
+    }
+    
+    @Override
+    public void onDestroy() {
+    	super.onDestroy();
+    	Log.d(Constants.TAG, "onDestroy method was invoked");
+    }
+    
+	
 	private class ButtonClickListener implements Button.OnClickListener {
 
 		@Override
@@ -74,7 +111,11 @@ public class LifecycleMonitorActivity extends Activity {
         okButton.setOnClickListener(buttonClickListener);
         Button cancelButton = (Button)findViewById(R.id.cancel_button);
         cancelButton.setOnClickListener(buttonClickListener);
-        Log.d(Constants.TAG, "onCreate() method was invoked");
+        if (savedInstanceState != null) {
+        	Log.d(Constants.TAG, "onCreate() method was invoked: Instance already created");
+        } else {
+        	Log.d(Constants.TAG, "onCreate() method was invoked: Instance created now");
+        }
     }    
 
     @Override
@@ -95,4 +136,5 @@ public class LifecycleMonitorActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+    
 }
